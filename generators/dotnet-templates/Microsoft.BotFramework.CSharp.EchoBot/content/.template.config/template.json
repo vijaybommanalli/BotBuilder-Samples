@@ -10,7 +10,7 @@
   "defaultName": "EchoBot",
   "groupIdentity": "Microsoft.BotFramework.CSharp.EchoBot",
   "identity": "Microsoft.BotFramework.CSharp.EchoBot",
-  "name": "Bot Framework Echo Bot (v0.1.6)",
+  "name": "Bot Framework Echo Bot (v0.2.0)",
   "preferNameDirectory": true,
   "sourceName": "Microsoft.BotFramework.Samples",
   "shortName": "echobot",
@@ -24,7 +24,7 @@
       "type": "generated",
       "generator": "constant",
       "parameters": {
-        "value": "v0.1.6"
+        "value": "v0.2.0"
       },
       "replaces": "vX.X.X"
     },
@@ -53,6 +53,22 @@
       ],
       "replaces": "__NETCOREAPP_VERSION__",
       "defaultValue": "netcoreapp2.2"
+    },
+    "ProjectType": {
+      "type": "parameter",
+      "description": "Type of Bot project to generage:  ASP.NET MVC or ASP.NET WebApi.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "mvc",
+          "description": "Bot built using ASP.NET MVC"
+        },
+        {
+          "choice": "webapi",
+          "description": "Bot built using ASP.NET WebApi"
+        }
+      ],
+      "isRequired": true
     },
     "AspCoreAssemblyVersion": {
       "type":"generated",
@@ -106,8 +122,43 @@
       "defaultValue": "false",
       "description": "If specified, skips the automatic NuGet restore of the project on create.",
       "isRequired": false
+    },
+    "ProjectTypeLowerCase": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source":"ProjectType",
+        "toLower": true
+      }
+    },
+    "ProjectTypeUpperCase": {
+      "type": "generated",
+      "generator": "casing",
+      "parameters": {
+        "source":"ProjectType",
+        "toLower": false
+      },
+      "replaces": "__ASPNET_PROJECT_TYPE__"
+    },
+    "genMvcProject":{
+      "type": "computed",
+      "value": "(ProjectTypeLowerCase == \"mvc\")"
     }
   },
+  "sources":[
+    {
+      "modifiers": [
+        {
+          "condition": "(genMvcProject)",
+          "exclude": [ "EchoBot.wepapi/**/*"]
+        },
+        {
+          "condition": "(!genMvcProject)",
+          "exclude": [ "EchoBot.wepapi/**/*"]
+        }
+      ]
+    }
+  ],
   "postActions": [
     {
       "condition": "(!SkipRestore)",

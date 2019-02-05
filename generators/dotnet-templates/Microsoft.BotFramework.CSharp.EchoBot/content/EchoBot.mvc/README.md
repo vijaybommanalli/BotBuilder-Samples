@@ -86,7 +86,7 @@ To learn more about deploying a bot to Azure, see [Deploy your bot to Azure][40]
 - [Azure Portal][10]
 - [Language Understanding using LUIS][11]
 
-#### Generated with `dotnet new echobot` vX.X.X
+#### Generated using `dotnet new echobot` vX.X.X (__ASPNET_PROJECT_TYPE__ project)
 
 
 [1]: https://dev.botframework.com

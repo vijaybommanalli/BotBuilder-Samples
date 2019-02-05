@@ -112,23 +112,24 @@ dotnet new -i Microsoft.BotFramework.CSharp.EmptyBot
 
 # Usage
 ## Creating a New Bot Project
+The `EchoBot`, `CoreBot`, and `EmptyBot` templates can generate a bot using either ASP.NET MVC or .NET Core WebAPI.  Choose a project type that is most familiar to you.  If you are new to .NET Core and ASP.NET the MVC project can be easier to learn and understand.  You must specify either `mvc` or `webapi` by using the `--project-type` option.
 
 ### Create EchoBot
 ```bash
-# Generate an Echo Bot
-dotnet new echobot -n MyEchoBot
+# Generate an Echo Bot using ASP.NET MVC
+dotnet new echobot -n MyEchoBot --project-type mvc
 ```
 
 ### Create CoreBot
 ```bash
-# Generate a Core Bot
-dotnet new corebot -n MyCoreBot
+# Generate a Core Bot WebAPI
+dotnet new corebot -n MyCoreBot --project-type webapi
 ```
 
 ### Create EmptyBot
 ```bash
-# Generate an Empty Bot
-dotnet new emptybot -n MyEmptyBot
+# Generate an Empty Bot using ASP.NET MVC
+dotnet new emptybot -n MyEmptyBot --project-type mvc
 ```
 
 ## Overridding .NET Core 2.2 Dependencies
@@ -139,13 +140,13 @@ Here are some different examples that show how to specify different .NET Core de
 ### Example Creating EchoBot Using .NET Core 2.1
 ```bash
 # Generate an Echo Bot (netcoreapp2.1)
-dotnet new echobot --framework netcoreapp2.1 -n MyEchoBot
+dotnet new echobot --framework netcoreapp2.1 -n MyEchoBot --project-type mvc
 ```
 
 ### Example Creating CoreBot Using .NET Core 2.0
 ```bash
 # Generate an Core Bot (netcoreapp2.0)
-dotnet new corebot --framework netcoreapp2.0 -n MyCoreBot
+dotnet new corebot --framework netcoreapp2.0 -n MyCoreBot --project-type mvc
 ```
 
 # Running Your Bot
